@@ -1,9 +1,10 @@
 import * as cdk from 'aws-cdk-lib';
-import { Construct } from 'constructs';
-import * as path from "node:path";
+import {Construct} from 'constructs';
+import * as path from 'node:path';
 
 export interface DemoProps {
   momentoApiKey: string;
+  logLevel: string;
   architecture: cdk.aws_lambda.Architecture;
 }
 
@@ -22,7 +23,11 @@ export class DemoNodejsRustLambdaStack extends cdk.Stack {
       timeout: cdk.Duration.seconds(300),
       memorySize: 8192,
       environment: {
-        MOMENTO_API_KEY: demoProps.momentoApiKey
+        MOMENTO_API_KEY: demoProps.momentoApiKey,
+        LOG_LEVEL: demoProps.logLevel,
+      },
+      bundling: {
+        forceDockerBundling: true,
       },
     });
   }

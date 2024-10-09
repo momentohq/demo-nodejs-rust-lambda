@@ -1,5 +1,15 @@
+import {initializeEnvVars, initializeLogging} from './lib/utils';
+
 export const handler = () => {
-  console.log('Hello, world!');
+  const envVars = initializeEnvVars();
+
+  const logger = initializeLogging({
+    level: envVars.LOG_LEVEL,
+    colorize: false,
+  });
+
+  logger.info('Hello, world!');
+  logger.debug('Here is a debug message!');
 
   return {
     statusCode: 200,
