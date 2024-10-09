@@ -1,0 +1,30 @@
+{
+  "name": "demo-pure-nodejs-lambda",
+  "version": "1.0.0",
+  "description": "A Little Rust-y Demo: Pure Node.js lambda",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "scripts": {
+    "prebuild": "eslint . --ext .ts",
+    "build": "tsc",
+    "test": "jest",
+    "lint": "eslint . --ext .ts",
+    "format": "eslint . --ext .ts --fix"
+  },
+  "devDependencies": {
+    "@types/aws-lambda": "8.10.118",
+    "@typescript-eslint/eslint-plugin": "5.30.5",
+    "@typescript-eslint/parser": "^5.0.0",
+    "eslint": "8.19.0",
+    "eslint-config-prettier": "8.5.0",
+    "eslint-plugin-import": "2.26.0",
+    "eslint-plugin-node": "11.1.0",
+    "eslint-plugin-prettier": "4.2.1",
+    "prettier": "2.7.1",
+    "typescript": "4.9.5"
+  },
+  "dependencies": {
+    "aws-lambda": "1.0.7"
+  }
+}
