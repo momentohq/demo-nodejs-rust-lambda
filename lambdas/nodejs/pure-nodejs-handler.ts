@@ -1,6 +1,8 @@
 import {initializeEnvVars, initializeLogging} from './lib/utils';
+import {LineReader} from './lib/line-reader';
+import {GzippedUrlLineReader} from './lib/gzipped-url-line-reader';
 
-export const handler = () => {
+export const handler = async () => {
   const envVars = initializeEnvVars();
 
   const logger = initializeLogging({
@@ -8,8 +10,15 @@ export const handler = () => {
     colorize: false,
   });
 
-  logger.info('Hello, world!');
-  logger.debug('Here is a debug message!');
+  logger.info('Initializing weather data reader');
+  const weatherDataReader: LineReader = await GzippedUrlLineReader.create(
+    logger,
+    'https://napi-rs-demo.s3.us-west-2.amazonaws.com/weather_16.json.gz'
+  );
+  logger.info('Weather data reader initialized');
+
+  await weatherDataReader.close();
+  logger.info('Weather data reader closed');
 
   return {
     statusCode: 200,
