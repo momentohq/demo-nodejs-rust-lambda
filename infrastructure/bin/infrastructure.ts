@@ -2,6 +2,14 @@ import 'source-map-support/register';
 import * as cdk from 'aws-cdk-lib';
 import {DemoNodejsRustLambdaStack, DemoProps} from '../lib/demo-nodejs-rust-lambda-stack';
 
+function getEnvVar(name: string): string {
+  const value = process.env[name];
+  if (!value) {
+    throw new Error(`Environment variable ${name} is required`);
+  }
+  return value;
+}
+
 const app = new cdk.App();
 
 const cdkStackProps = {
@@ -17,13 +25,12 @@ const cdkStackProps = {
   /* For more information, see https://docs.aws.amazon.com/cdk/latest/guide/environments.html */
 };
 
-const momentoApiKey = process.env.MOMENTO_API_KEY;
-if (!momentoApiKey) {
-  throw new Error('MOMENTO_API_KEY environment variable is required');
-}
+const momentoApiKey = getEnvVar('MOMENTO_API_KEY');
+const logLevel = getEnvVar('LOG_LEVEL');
 
 const demoProps: DemoProps = {
   momentoApiKey: momentoApiKey,
+  logLevel: logLevel,
   architecture: cdk.aws_lambda.Architecture.ARM_64,
 };
 
