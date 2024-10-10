@@ -11,7 +11,9 @@
     "test": "jest",
     "lint": "eslint . --ext .ts",
     "format": "eslint . --ext .ts --fix",
-    "local-driver": "tsc && node dist/local-driver.js"
+    "local-driver": "tsc && node dist/local-driver.js",
+    "flush-cache": "tsc && node dist/flush-cache.js",
+    "sample-cache-data": "tsc && node dist/sample-cache-data.js"
   },
   "devDependencies": {
     "@types/aws-lambda": "8.10.118",
@@ -27,7 +29,9 @@
     "typescript": "4.9.5"
   },
   "dependencies": {
+    "@gomomento/sdk": "1.99.0",
     "aws-lambda": "1.0.7",
+    "dotenv": "16.4.5",
     "winston": "3.15.0"
   }
 }

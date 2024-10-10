@@ -17,7 +17,10 @@ export class GzippedUrlLineReader implements LineReader {
     const response = await fetch(url);
 
     // Convert the web ReadableStream to a Node.js Readable stream, so that we can use it with the nodejs zlib and readline libraries
-    const reader = response.body!.getReader();
+    const reader = response.body?.getReader();
+    if (!reader) {
+      throw new Error('Failed to get reader from response body');
+    }
     const stream = new Readable({
       async read() {
         const {done, value} = await reader.read();

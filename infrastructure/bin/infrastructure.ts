@@ -1,6 +1,9 @@
 import 'source-map-support/register';
 import * as cdk from 'aws-cdk-lib';
 import {DemoNodejsRustLambdaStack, DemoProps} from '../lib/demo-nodejs-rust-lambda-stack';
+import * as dotenv from 'dotenv';
+import * as path from 'node:path';
+import * as fs from 'node:fs';
 
 function getEnvVar(name: string): string {
   const value = process.env[name];
@@ -8,6 +11,16 @@ function getEnvVar(name: string): string {
     throw new Error(`Environment variable ${name} is required`);
   }
   return value;
+}
+
+export function initializeEnvVars() {
+  const envFilePath = path.join(__dirname, '..', '..', '.env');
+  if (!fs.existsSync(envFilePath)) {
+    throw new Error(
+      `.env file not found at ${envFilePath}; try copying .env.EXAMPLE to .env and editing it to contain the correct values`
+    );
+  }
+  dotenv.config({path: envFilePath});
 }
 
 const app = new cdk.App();
@@ -25,11 +38,16 @@ const cdkStackProps = {
   /* For more information, see https://docs.aws.amazon.com/cdk/latest/guide/environments.html */
 };
 
+initializeEnvVars();
 const momentoApiKey = getEnvVar('MOMENTO_API_KEY');
+const momentoFlushApiKey = getEnvVar('MOMENTO_FLUSH_API_KEY');
+const momentoCacheName = getEnvVar('MOMENTO_CACHE_NAME');
 const logLevel = getEnvVar('LOG_LEVEL');
 
 const demoProps: DemoProps = {
   momentoApiKey: momentoApiKey,
+  momentoFlushApiKey: momentoFlushApiKey,
+  momentoCacheName: momentoCacheName,
   logLevel: logLevel,
   architecture: cdk.aws_lambda.Architecture.ARM_64,
 };
