@@ -4,6 +4,8 @@ import * as path from 'node:path';
 
 export interface DemoProps {
   momentoApiKey: string;
+  momentoFlushApiKey: string;
+  momentoCacheName: string;
   logLevel: string;
   architecture: cdk.aws_lambda.Architecture;
 }
@@ -24,6 +26,8 @@ export class DemoNodejsRustLambdaStack extends cdk.Stack {
       memorySize: 8192,
       environment: {
         MOMENTO_API_KEY: demoProps.momentoApiKey,
+        MOMENTO_FLUSH_API_KEY: demoProps.momentoFlushApiKey,
+        MOMENTO_CACHE_NAME: demoProps.momentoCacheName,
         LOG_LEVEL: demoProps.logLevel,
       },
       bundling: {
