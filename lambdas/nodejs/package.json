@@ -11,7 +11,7 @@
     "test": "jest",
     "lint": "eslint . --ext .ts",
     "format": "eslint . --ext .ts --fix",
-    "local-ingest": "tsc && node dist/local-driver.js",
+    "local-ingest": "tsc && node dist/local-ingest.js",
     "flush-cache": "tsc && node dist/flush-cache.js",
     "sample-cache-data": "tsc && node dist/sample-cache-data.js"
   },
