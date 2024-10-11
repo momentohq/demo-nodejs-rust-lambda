@@ -1,0 +1,7 @@
+[workspace]
+resolver = "2"
+
+members = [
+  "momento_cache_facade",
+]
+
