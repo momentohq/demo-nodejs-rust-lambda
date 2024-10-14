@@ -12,6 +12,7 @@
     "lint": "eslint . --ext .ts",
     "format": "eslint . --ext .ts --fix",
     "local-ingest": "tsc && node dist/local-ingest.js",
+    "local-ingest-rust": "tsc && node dist/local-ingest-rust.js",
     "flush-cache": "tsc && node dist/flush-cache.js",
     "sample-cache-data": "tsc && node dist/sample-cache-data.js"
   },
@@ -32,6 +33,7 @@
     "@gomomento/sdk": "1.99.0",
     "aws-lambda": "1.0.7",
     "dotenv": "16.4.5",
+    "napi_rs_momento_cache": "file:../rust-workspace/napi_rs_momento_cache",
     "winston": "3.15.0"
   }
 }
