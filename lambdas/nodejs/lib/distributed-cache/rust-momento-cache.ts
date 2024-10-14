@@ -4,7 +4,7 @@ import {NapiRsMomentoCache} from 'napi_rs_momento_cache';
 export class RustMomentoCache implements DistributedCache {
   private readonly cache: NapiRsMomentoCache;
 
-  constructor(logLevel: string, cacheName: string, momentoApiKey: string) {
+  constructor(logLevel: string, momentoApiKey: string, cacheName: string) {
     this.cache = NapiRsMomentoCache.create(logLevel, cacheName, momentoApiKey);
   }
 

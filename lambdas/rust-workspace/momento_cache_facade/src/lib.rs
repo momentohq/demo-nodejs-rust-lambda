@@ -1,13 +1,18 @@
 use std::time::Duration;
-use log::debug;
+use log::{debug, info, warn};
 use momento::cache::{configurations, GetResponse};
 use momento::{CacheClient, CredentialProvider};
 
 pub fn initialize_logging(log_level: &str) {
-    match log_level {
-        "debug" => colog::default_builder().filter_level(log::LevelFilter::Debug).init(),
-        "info" => colog::default_builder().filter_level(log::LevelFilter::Info).init(),
-        _ => colog::default_builder().filter_level(log::LevelFilter::Info).init(),
+    let mut default_builder = colog::default_builder();
+    let log_builder = match log_level {
+        "debug" => default_builder.filter_level(log::LevelFilter::Debug),
+        "info" => default_builder.filter_level(log::LevelFilter::Info),
+        _ => default_builder.filter_level(log::LevelFilter::Info),
+    };
+    match log_builder.try_init() {
+        Ok(_) => info!("Logging initialized"),
+        Err(e) => warn!("Failed to initialize logging; this may just indicate that logging is already initialized (e.g. in a warm Lambda container): {}", e),
     }
 }
 
