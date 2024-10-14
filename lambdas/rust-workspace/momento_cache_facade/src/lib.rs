@@ -3,7 +3,6 @@ use log::{debug, info, warn};
 use momento::cache::{configurations, GetResponse};
 use momento::{CacheClient, CredentialProvider};
 
-
 pub fn initialize_logging(log_level: &str) {
     let mut default_builder = colog::default_builder();
     let log_builder = match log_level {
