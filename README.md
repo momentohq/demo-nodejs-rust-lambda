@@ -13,7 +13,7 @@ In this demo we will start with an existing node.js application, intended to dep
 
 This demo does not assume that you have any familiarity with or experience with Rust; we’ll cover the basics that you need to know. By the end of this project you should have enough familiarity to understand how you might apply these techniques to your own application, regardless of what language it’s written in. And you will see that it’s possible to achieve major performance wins (and cost reductions!) with a tiny bit of Rust, without needing to re-write your whole application!
 
-To follow along with the steps of the demo, please refer to [this Google Doc](https://docs.google.com/document/d/1q2F1hEOvF0t6EEmJSxxtAwQif4VkLNaITIj2yN4p6o0/edit?usp=sharing) [(PDF version)](https://github.com/momentohq/demo-nodejs-rust-lambda/blob/main/Workshop-Overvew.pdf) that outlines all of the steps.
+To follow along with the steps of the demo, please refer to [this Google Doc](https://docs.google.com/document/d/1q2F1hEOvF0t6EEmJSxxtAwQif4VkLNaITIj2yN4p6o0/edit?usp=sharing) [(PDF version)](https://github.com/momentohq/demo-nodejs-rust-lambda/blob/main/Workshop-Overview.pdf) that outlines all of the steps.
 
 ----------------------------------------------------------------------------------------
 For more info, visit our website at [https://gomomento.com](https://gomomento.com)!
