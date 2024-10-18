@@ -1,0 +1,6 @@
+{
+  "rust-analyzer.linkedProjects": [
+    "./lambdas/rust-workspace/momento_cache_facade/Cargo.toml", 
+    "./lambdas/rust-workspace/Cargo.toml"
+  ]
+}
