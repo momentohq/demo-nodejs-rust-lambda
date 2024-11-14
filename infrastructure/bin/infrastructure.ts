@@ -25,6 +25,21 @@ export function initializeEnvVars() {
 
 const app = new cdk.App();
 
+initializeEnvVars();
+const momentoApiKey = getEnvVar('MOMENTO_API_KEY');
+const momentoFlushApiKey = getEnvVar('MOMENTO_FLUSH_API_KEY');
+const momentoCacheName = getEnvVar('MOMENTO_CACHE_NAME');
+const logLevel = getEnvVar('LOG_LEVEL');
+const awsRegion = getEnvVar('AWS_REGION');
+
+const demoProps: DemoProps = {
+  momentoApiKey: momentoApiKey,
+  momentoFlushApiKey: momentoFlushApiKey,
+  momentoCacheName: momentoCacheName,
+  logLevel: logLevel,
+  architecture: cdk.aws_lambda.Architecture.ARM_64,
+};
+
 const cdkStackProps = {
   /* If you don't specify 'env', this stack will be environment-agnostic.
    * Account/Region-dependent features and context lookups will not work,
@@ -36,20 +51,8 @@ const cdkStackProps = {
    * want to deploy the stack to. */
   // env: { account: '123456789012', region: 'us-east-1' },
   /* For more information, see https://docs.aws.amazon.com/cdk/latest/guide/environments.html */
-};
 
-initializeEnvVars();
-const momentoApiKey = getEnvVar('MOMENTO_API_KEY');
-const momentoFlushApiKey = getEnvVar('MOMENTO_FLUSH_API_KEY');
-const momentoCacheName = getEnvVar('MOMENTO_CACHE_NAME');
-const logLevel = getEnvVar('LOG_LEVEL');
-
-const demoProps: DemoProps = {
-  momentoApiKey: momentoApiKey,
-  momentoFlushApiKey: momentoFlushApiKey,
-  momentoCacheName: momentoCacheName,
-  logLevel: logLevel,
-  architecture: cdk.aws_lambda.Architecture.ARM_64,
+  env: {region: awsRegion, account: process.env.CDK_DEFAULT_ACCOUNT},
 };
 
 new DemoNodejsRustLambdaStack(app, 'DemoNodejsRustLambdaStack', demoProps, cdkStackProps);
