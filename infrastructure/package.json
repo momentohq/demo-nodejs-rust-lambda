@@ -18,7 +18,7 @@
     "@types/jest": "29.5.12",
     "@types/node": "22.5.4",
     "@typescript-eslint/eslint-plugin": "8.8.1",
-    "aws-cdk": "2.161.1",
+    "aws-cdk": "2.166.0",
     "eslint": "8.57.1",
     "eslint-config-prettier": "9.1.0",
     "eslint-plugin-import": "2.29.1",
@@ -30,7 +30,7 @@
     "typescript": "5.5.4"
   },
   "dependencies": {
-    "aws-cdk-lib": "2.161.1",
+    "aws-cdk-lib": "2.166.0",
     "constructs": "10.3.0",
     "dotenv": "16.4.5",
     "source-map-support": "0.5.21"
