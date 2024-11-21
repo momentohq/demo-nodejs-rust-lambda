@@ -19,7 +19,7 @@ export class PureNodejsMomentoCache implements DistributedCache {
     logger.info('Instantiating Momento CacheClient');
     this.logger = logger;
     this.cacheClient = new CacheClient({
-      configuration: Configurations.InRegion.Default.latest().withNumConnections(10),
+      configuration: Configurations.Laptop.latest().withNumConnections(10),
       defaultTtlSeconds: 60 * 5,
       credentialProvider: CredentialProvider.fromString(momentoApiKey),
     });
